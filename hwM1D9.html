@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<!-- saved from url=(0436)https://s3.eu-west-1.amazonaws.com/eduflow-production/activity-resources/191767270778436.html?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA2TAWW44RDWPS6YGR%2F20210318%2Feu-west-1%2Fs3%2Faws4_request&X-Amz-Date=20210318T131934Z&X-Amz-Expires=600&X-Amz-SignedHeaders=host&response-content-disposition=inline%3B%20filename%2A%3DUTF-8%27%27M1-D9.html&X-Amz-Signature=e7fcb6bdf36c27622f5afa4a363dbdc758d7b5b165a4db65975ff3ae95ef1bd6 -->
+<html><!--
+        BINGO CHALLENGE!!!
+        Create programmatically (with JS) a BINGO board with 76 cells, from 1 to 76.
+        Create a button to randomize a number from 1 to 76. The same number should be highlighted on the bingo board
+
+        EXTRA: 
+        - Take ALWAYS a new number (eg. avoid randoming the number 10 3 times)
+        - Create a USER BOARD with 24 randomized numbers that highlights as the main board does
+        - Let the user choose HOW MANY user boards he's willing to play with and create them.
+    --><head>
+        <meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+        <link rel="stylesheet" href="hwM1D9.css">
+    </head>
+  <body>
+      <div id="centered">
+        <div id="card">
+        </div>
+      </div>
+      <script>
+
+        // const storedRandom = 70
+        // const arrTo76 = Array.from({length: 76}, (_, index) => index + 1)
+         
+        // const randomWoPrev = () => {
+        //     arrTo76.splice(storedRandom - 1, 1)
+        //     console.log(arrTo76)
+        //     newInd = Math.round(Math.random() * (arrTo76.length - 1))
+        //     console.log(newInd)
+        //     storedRandom = arrTo76[newInd]
+        // }
+
+        // randomWoPrev()
+
+        const highlightNum = () => {
+            const randomNum = Math.round(Math.random() * 76)
+            const boxesArr = document.querySelectorAll('#card div')
+            boxesArr.forEach( x => x.style.backgroundColor = 'yellow')
+            boxesArr.forEach( function callback( val, ind ) {
+                if (randomNum === ind + 1) {
+                    val.style.backgroundColor = 'green'
+                }
+            })
+        }
+      
+        window.onload = () => {   
+            const newButton = document.createElement('input')
+            newButton.setAttribute('type', 'button')
+            newButton.setAttribute('value', 'Give me a random number')
+            newButton.classList.add('button')
+            document.querySelector('#centered').appendChild(newButton)
+
+            for(let i = 0; i < 76; i++){
+                const newBox = document.createElement('div')
+                newBox.classList.add('box')
+                newBox.innerHTML = i + 1
+                document.querySelector('#card').appendChild(newBox)
+            }        
+            newButton.onclick = highlightNum
+        }       
+
+      </script>
+</body></html>
